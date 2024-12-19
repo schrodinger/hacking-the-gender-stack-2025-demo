@@ -1,0 +1,6 @@
+{
+  "profile": "jinja",
+  "max_blank_lines": 1,
+  "blank_line_before_tag": "block,macro",
+  "blank_line_after_tag": "extends,endblock,endmacro"
+}

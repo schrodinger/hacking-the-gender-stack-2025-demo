@@ -1,8 +1,23 @@
-{% extends 'base.html' %}
-{% from 'macros/compound-image.html' import compound_image_card %}
+{% extends "base.html" %}
+
+{% macro compound_image_card(smiles, highlight='') %}
+  <div class="card">
+    <img src='{{ url_for("get_compound_image") }}?smiles={{ smiles|urlencode }}&highlight={{ highlight|urlencode }}'
+         alt="{{ smiles }}"
+         class="card-img-top w-100 overflow-hidden"
+         style="aspect-ratio: 1">
+    <div class="card-body">
+      <h5 class="card-title text-truncate text-center"
+          data-bs-toggle="tooltip"
+          data-bs-title="{{ smiles }}">{{ smiles }}</h5>
+    </div>
+  </div>
+{% endmacro %}
+
 {% block content %}
   <div class="vstack gap-4 mt-3">
     <h1 class="text-primary">Compound Search</h1>
+
     <!-- Search bar -->
     <form action='{{ url_for("get_compounds") }}' method="GET">
       <div class="input-group">
@@ -15,8 +30,10 @@
         <button type="submit" class="btn btn-primary">Search</button>
       </div>
     </form>
+
     <!-- Add Compounds -->
-    <div class="d-grid">{% include 'partials/add-compounds.html' %}</div>
+    <div class="d-grid">{% include "partials/add-compounds.html" %}</div>
+
     <!-- Search results -->
     {% if smiles_list|length > 0 %}
       <div class="compound-card-grid">
@@ -28,7 +45,8 @@
       <p class="fs-3">No matching compounds</p>
     {% endif %}
   </div>
-{% endblock %}
+{% endblock content %}
+
 {% block styles %}
   <style>
   .compound-card-grid {
@@ -42,4 +60,4 @@
     width: 15rem;
   }
   </style>
-{% endblock %}
+{% endblock styles %}

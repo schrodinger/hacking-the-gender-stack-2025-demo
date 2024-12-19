@@ -7,7 +7,11 @@
           content="Demo application for Schrodinger Hacking the Gender Stack 2025">
     <meta name="keywords" content="hackathon schrodinger">
     <title>
-      {% block title %}Hacking the Gender Stack 2025{% endblock %}
+
+      {% block title %}
+        Hacking the Gender Stack 2025
+      {% endblock title %}
+
     </title>
     <link rel="icon"
           href='{{ url_for("static", filename="favicon.svg") }}'
@@ -24,17 +28,28 @@
         overflow: hidden;
       }
     </style>
-    {% block styles %}{% endblock %}
+
+    {% block styles %}
+    {% endblock styles %}
+
   </head>
   <body>
     <div class="w-100 h-100 overflow-auto d-flex flex-column justify-content-between">
       <div class="container">
-        {% block content %}{% endblock %}
+
+        {% block content %}
+        {% endblock content %}
+
       </div>
       <div>
+
         {% block footer %}
-          {% include 'partials/footer.html' %}
-        {% endblock %}
+          <footer class="d-flex flex-column align-items-center fs-6 text-body-tertiary py-5">
+            <span>Hacking the Gender Stack 2025 - New York, New York</span>
+            <span>Copyright &copy; Schrodinger Inc. 2025</span>
+          </footer>
+        {% endblock footer %}
+
       </div>
     </div>
     <script>
@@ -43,6 +58,9 @@
         new bootstrap.Tooltip(tooltipTriggerEl)
       });
     </script>
-    {% block scripts %}{% endblock %}
+
+    {% block scripts %}
+    {% endblock scripts %}
+
   </body>
 </html>
