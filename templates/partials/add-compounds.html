@@ -1,0 +1,40 @@
+<button class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#add-compound-modal">
+  <i class="bi bi-plus-circle-fill"></i> Add Compounds
+</button>
+<!-- Add compounds modal -->
+<div class="modal fade"
+     id="add-compound-modal"
+     data-bs-backdrop="static"
+     tabindex="-1"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <form action='{{ url_for("add_compounds") }}' method="POST">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Add Compounds</h1>
+          <button type="button"
+                  class="btn btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <label for="compound-smiles-field" class="form-label">Compound Smiles</label>
+          <textarea name="smiles_list"
+                    class="form-control"
+                    aria-describedby="compound-smiles-description"
+                    rows="5"
+                    required></textarea>
+          <div id="compound-smiles-description" class="form-text">
+            Enter compound smiles. Multiple smiles should be separated by a newline.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

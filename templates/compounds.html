@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% from 'macros/compound-image.html' import compound_image_card %}
+{% block content %}
+  <div class="vstack gap-4 mt-3">
+    <h1 class="text-primary">Compound Search</h1>
+    <!-- Search bar -->
+    <form action='{{ url_for("get_compounds") }}' method="GET">
+      <div class="input-group">
+        <input type="text"
+               name="query"
+               id="compound-search-field"
+               class="form-control"
+               placeholder="Substructure Smiles"
+               value="{{ smiles_query }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+    <!-- Add Compounds -->
+    <div class="d-grid">{% include 'partials/add-compounds.html' %}</div>
+    <!-- Search results -->
+    {% if smiles_list|length > 0 %}
+      <div class="compound-card-grid">
+        {% for smiles in smiles_list %}
+          <div class="compound-card-container">{{ compound_image_card(smiles, smiles_query) }}</div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="fs-3">No matching compounds</p>
+    {% endif %}
+  </div>
+{% endblock %}
+{% block styles %}
+  <style>
+  .compound-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 2rem;
+    justify-items: center;
+  }
+
+  .compound-card-container {
+    width: 15rem;
+  }
+  </style>
+{% endblock %}

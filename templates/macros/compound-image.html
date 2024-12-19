@@ -1,0 +1,13 @@
+{% macro compound_image_card(smiles, highlight='') %}
+  <div class="card">
+    <img src='{{ url_for("get_compound_image") }}?smiles={{ smiles|urlencode }}&highlight={{ highlight|urlencode }}'
+         alt="{{ smiles }}"
+         class="card-img-top w-100 overflow-hidden"
+         style="aspect-ratio: 1">
+    <div class="card-body">
+      <h5 class="card-title text-truncate text-center"
+          data-bs-toggle="tooltip"
+          data-bs-title="{{ smiles }}">{{ smiles }}</h5>
+    </div>
+  </div>
+{% endmacro %}
