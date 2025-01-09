@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, Response, redirect, render_template, request
 
 from chemistry import search_compounds, smiles_to_svg, get_highlighted_image
@@ -49,3 +51,7 @@ def get_compound_image():
             get_highlighted_image(smiles, highlighted_substructure),
             mimetype="image/svg+xml",
         )
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
